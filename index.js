@@ -31,10 +31,34 @@ class ChurchOnlineAPI extends RESTDataSource {
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
   # Comments in GraphQL are defined with the hash (#) symbol.
-
   type ChurchOnline {
     isLive: Boolean
     nextLive: String
+  }
+  
+  type BrandColors {
+      primary: String,
+      secondary: String
+  }
+  
+  type Series {
+      title: String!,
+      startDate: String,
+      endDate: String,
+      image: String,
+      bumper: String,
+      colors: BrandColors,
+      sermons: [Sermon]
+  }
+  
+  type Sermon {
+      title: String!,
+      description: String!,
+      date: String!,
+      image: String,
+      audio: String!,
+      video: String!,
+      series: Series!
   }
 
   # The "Query" type is the root of all GraphQL queries.
